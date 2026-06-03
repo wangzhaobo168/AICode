@@ -1,4 +1,3 @@
-
 const Renderer = {
   canvas: null,
   ctx: null,
@@ -16,14 +15,14 @@ const Renderer = {
 
   drawBackground() {
     this.ctx.fillStyle = '#1a1a2e';
-    for (let y = 400; y &lt; this.canvas.height; y += 20) {
+    for (let y = 400; y < this.canvas.height; y += 20) {
       this.ctx.fillRect(0, y, this.canvas.width, 2);
     }
     this.ctx.fillStyle = '#0f3460';
     this.ctx.fillRect(0, 400, this.canvas.width, this.canvas.height - 400);
 
     this.ctx.fillStyle = '#16213e';
-    for (let x = 0; x &lt; this.canvas.width; x += 40) {
+    for (let x = 0; x < this.canvas.width; x += 40) {
       this.ctx.fillRect(x, 400, 20, 4);
     }
   },
@@ -91,7 +90,7 @@ const Renderer = {
   },
 
   drawAttackEffect(mech) {
-    if (mech.state === 'attacking' &amp;&amp; mech.attackDuration &gt; 10) {
+    if (mech.state === 'attacking' && mech.attackDuration > 10) {
       const ctx = this.ctx;
       const x = mech.x + (mech.facing === 1 ? mech.width : -30);
       const y = mech.y + mech.height / 2 - 20;

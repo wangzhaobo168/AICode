@@ -1,4 +1,3 @@
-
 const Game = {
   state: 'start',
   mech1: null,
@@ -14,20 +13,20 @@ const Game = {
   },
 
   bindEvents() {
-    document.getElementById('startBtn').addEventListener('click', () =&gt; {
+    document.getElementById('startBtn').addEventListener('click', () => {
       this.start();
     });
 
-    document.getElementById('pauseBtn').addEventListener('click', () =&gt; {
+    document.getElementById('pauseBtn').addEventListener('click', () => {
       this.togglePause();
     });
 
-    document.getElementById('restartBtn').addEventListener('click', () =&gt; {
+    document.getElementById('restartBtn').addEventListener('click', () => {
       this.reset();
       this.start();
     });
 
-    document.getElementById('playAgainBtn').addEventListener('click', () =&gt; {
+    document.getElementById('playAgainBtn').addEventListener('click', () => {
       this.reset();
       this.showScreen('start');
     });
@@ -100,13 +99,13 @@ const Game = {
   },
 
   checkAttacks() {
-    if (this.mech1.state === 'attacking' &amp;&amp; this.mech1.attackDuration === 15) {
+    if (this.mech1.state === 'attacking' && this.mech1.attackDuration === 15) {
       if (this.isInRange(this.mech1, this.mech2)) {
         this.mech2.takeDamage(15);
       }
     }
 
-    if (this.mech2.state === 'attacking' &amp;&amp; this.mech2.attackDuration === 15) {
+    if (this.mech2.state === 'attacking' && this.mech2.attackDuration === 15) {
       if (this.isInRange(this.mech2, this.mech1)) {
         this.mech1.takeDamage(15);
       }
@@ -119,9 +118,9 @@ const Game = {
     const dy = (attacker.y + attacker.height / 2) - (defender.y + defender.height / 2);
     const distance = Math.sqrt(dx * dx + dy * dy);
     
-    const facingCorrect = (attacker.facing === 1 &amp;&amp; dx &lt; 0) || (attacker.facing === -1 &amp;&amp; dx &gt; 0);
+    const facingCorrect = (attacker.facing === 1 && dx < 0) || (attacker.facing === -1 && dx > 0);
     
-    return distance &lt; attackRange &amp;&amp; !facingCorrect;
+    return distance < attackRange && !facingCorrect;
   },
 
   checkGameOver() {
@@ -164,10 +163,10 @@ const Game = {
     this.update();
     this.render();
 
-    requestAnimationFrame(() =&gt; this.gameLoop());
+    requestAnimationFrame(() => this.gameLoop());
   }
 };
 
-window.addEventListener('load', () =&gt; {
+window.addEventListener('load', () => {
   Game.init();
 });

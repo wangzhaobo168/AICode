@@ -1,4 +1,3 @@
-
 class Mech {
   constructor(x, y, team, controls) {
     this.x = x;
@@ -22,22 +21,22 @@ class Mech {
   }
 
   update(keys, otherMech, canvasWidth, canvasHeight) {
-    if (this.attackCooldown &gt; 0) this.attackCooldown--;
-    if (this.defendCooldown &gt; 0) this.defendCooldown--;
-    if (this.attackDuration &gt; 0) {
+    if (this.attackCooldown > 0) this.attackCooldown--;
+    if (this.defendCooldown > 0) this.defendCooldown--;
+    if (this.attackDuration > 0) {
       this.attackDuration--;
       if (this.attackDuration === 0) {
         this.state = 'idle';
       }
     }
-    if (this.defendDuration &gt; 0) {
+    if (this.defendDuration > 0) {
       this.defendDuration--;
       if (this.defendDuration === 0) {
         this.state = 'idle';
       }
     }
 
-    if (this.state !== 'attacking' &amp;&amp; this.state !== 'defending') {
+    if (this.state !== 'attacking' && this.state !== 'defending') {
       this.moveDirection = { x: 0, y: 0 };
       if (keys[this.controls.left]) this.moveDirection.x = -1;
       if (keys[this.controls.right]) this.moveDirection.x = 1;
@@ -53,23 +52,23 @@ class Mech {
         const newX = this.x + this.moveDirection.x * this.speed;
         const newY = this.y + this.moveDirection.y * this.speed;
         
-        if (newX &gt;= 0 &amp;&amp; newX + this.width &lt;= canvasWidth) {
+        if (newX >= 0 && newX + this.width <= canvasWidth) {
           this.x = newX;
         }
-        if (newY &gt;= 100 &amp;&amp; newY + this.height &lt;= canvasHeight) {
+        if (newY >= 100 && newY + this.height <= canvasHeight) {
           this.y = newY;
         }
       } else {
         this.state = 'idle';
       }
 
-      if (keys[this.controls.attack] &amp;&amp; this.attackCooldown === 0) {
+      if (keys[this.controls.attack] && this.attackCooldown === 0) {
         this.state = 'attacking';
         this.attackDuration = 20;
         this.attackCooldown = 40;
       }
 
-      if (keys[this.controls.defend] &amp;&amp; this.defendCooldown === 0) {
+      if (keys[this.controls.defend] && this.defendCooldown === 0) {
         this.state = 'defending';
         this.defendDuration = 30;
         this.defendCooldown = 60;
@@ -77,7 +76,7 @@ class Mech {
     }
 
     this.animTimer++;
-    if (this.animTimer &gt; 8) {
+    if (this.animTimer > 8) {
       this.animTimer = 0;
       this.animFrame = (this.animFrame + 1) % 4;
     }
@@ -91,7 +90,7 @@ class Mech {
   }
 
   isDead() {
-    return this.health &lt;= 0;
+    return this.health <= 0;
   }
 
   getStatusText() {
